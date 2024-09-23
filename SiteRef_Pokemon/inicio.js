@@ -1,0 +1,186 @@
+// Elementos da barra lateral
+const sidebar = document.getElementById('sidebar');
+const pokemonImage = document.getElementById('pokemonImage');
+const pokemonDescription = document.getElementById('pokemonDescription');
+const pokemonType = document.getElementById('pokemonType');
+
+// Estrutura de dados com os Pokémon (ID, nome, tipo e imagem)
+const pokemons = [
+    { id: 'bulbasaur', name: 'Por algum tempo após o nascimento, ele usa os nutrientes contidos na semente em suas costas para crescer.', type: 'Grama & Tóxico', img: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjJpcGl0a29ieTUybmNzeHViMDliN2RnOHJpejlub284dHFtZGhudiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11YNkErUBmRh8Q/giphy.webp' },
+    { id: 'ivysaur', name: 'Quanto mais luz solar Ivysaur recebe, mais força brota dentro dele, permitindo que o broto em suas costas cresça mais.', type: 'Grama & Tóxico', img: 'https://64.media.tumblr.com/tumblr_m79vmdqtAW1r7guhqo1_500.gif' },
+    { id: 'venosaur', name: 'Enquanto se aquece no sol, ele pode converter a luz em energia. Como resultado, ele é mais potente no verão.', type: 'Grama & Tóxico', img: 'https://forums.pokemmo.com/uploads/monthly_2021_11/908f5988d1b564a4a67f0a4ba2a48113.gif.31ef661654ec8a2dce1402b317fa8aaa.gif' },
+    { id: 'charmander', name: 'Tem preferência por coisas quentes. Quando chove, diz-se que o vapor jorra da ponta de sua cauda.', type: 'Fogo' },
+    { id: 'charmeleon', name: 'Quando ele balança sua cauda em chamas, ele eleva a temperatura do ar ao redor em quase 2000°F.', type: 'Fogo' },
+    { id: 'charizard', name: 'Cuspidor de fogo quente o suficiente para derreter pedras, ele causa incêndios florestais sem querer.', type: 'Fogo & Voador' },
+    { id: 'squirtle', name: 'Quando se retraindo para dentro de sua concha, ele esguicha água com força suficiente para perfurar concreto.', type: 'Água' },
+    { id: 'wartortle', name: 'Ele usa sua cauda peluda como uma almofada e uma cobertura quando dorme em suas costas.', type: 'Água' },
+    { id: 'blastoise', name: 'Blastoise tem canhões de água que se projetam de seu casco. Eles são capazes de disparar jatos de água com força suficiente para perfurar aço.', type: 'Água' },
+    { id: 'caterpie', name: 'Sua estrutura corporal é tão simples que ele pode crescer rapidamente. Ele libera um odor hediondo de sua antena.', type: 'Inseto' },
+    { id: 'metapod', name: 'Metapod é a segunda etapa do ciclo de vida de Caterpie. Ele endurece seu corpo para proteção enquanto passa por uma metamorfose.', type: 'Inseto' },
+    { id: 'butterfree', name: 'Suas asas são cobertas com um pó venenoso. Ao polinizar flores, ele coleta néctar com suas longas antenas.', type: 'Inseto & Voador' },
+    { id: 'weedle', name: 'Weedle pode ser pequeno, mas é muito perigoso. Ele pode se defender com uma picada venenosa de sua cauda.', type: 'Inseto & Venenoso' },
+    { id: 'kakuna', name: 'Kakuna permanece imóvel em sua casca dura enquanto desenvolve seu corpo. Ele pode ser encontrado pendurado em árvores.', type: 'Inseto & Venenoso' },
+    { id: 'beedrill', name: 'Beedrill é extremamente territorial e forma colônias. Suas agulhas são cheias de veneno, e ele ataca em enxame.', type: 'Inseto & Venenoso' },
+    { id: 'pidgey', name: 'Um Pokémon dócil que prefere evitar conflitos. Ele pode se defender lançando areia nos olhos de seus inimigos.', type: 'Normal & Voador' },
+    { id: 'pidgeotto', name: 'Pidgeotto tem um território muito vasto, que ele defende ferozmente contra intrusos. Ele caça presas pequenas como Rattata.', type: 'Normal & Voador' },
+    { id: 'pidgeot', name: 'Ele é conhecido por sua velocidade e agilidade no ar. Seu corpo esbelto o torna um Pokémon incrivelmente veloz.', type: 'Normal & Voador' },
+    { id: 'rattata', name: 'Rattata é um roedor muito comum. Ele roerá qualquer coisa e é conhecido por viver em quase qualquer lugar.', type: 'Normal' },
+    { id: 'raticate', name: 'Raticate usa seus enormes dentes para roer tudo o que encontrar. Ele é agressivo e defende seu território.', type: 'Normal' },
+    { id: 'spearow', name: 'Ele pode ser pequeno, mas é muito corajoso. Spearow usa sua voz estridente para chamar seus companheiros.', type: 'Normal & Voador' },
+    { id: 'fearow', name: 'Fearow tem uma envergadura de asa enorme, permitindo-lhe voar longas distâncias sem descanso. É temido por sua agressividade.', type: 'Normal & Voador' },
+    { id: 'ekans', name: 'Ekans se move em silêncio, deslizando em busca de presas. Ele envolve sua presa com seu corpo antes de morder com suas presas venenosas.', type: 'Venenoso' },
+    { id: 'arbok', name: 'Ele intimida seus inimigos com a marca em seu abdômen, que parece um rosto horrível. Ele é conhecido por perseguir sua presa sem descanso.', type: 'Venenoso' },
+    { id: 'pikachu', name: 'Pikachu armazena eletricidade em suas bochechas. Ele libera eletricidade quando está ameaçado ou excitado.', type: 'Elétrico' },
+    { id: 'raichu', name: 'Suas descargas elétricas podem atingir 100.000 volts. Quando está com muita energia acumulada, seu temperamento piora.', type: 'Elétrico' },
+    { id: 'sandshrew', name: 'Este Pokémon se enterra nas areias quentes do deserto para se proteger do calor e dos inimigos.', type: 'Terra' },
+    { id: 'sandslash', name: 'Suas garras afiadas podem cortar qualquer coisa. Ele se enrola em uma bola para se proteger em combates.', type: 'Terra' },
+    { id: 'nidoran-f', name: 'Seu corpo é coberto por pequenos espinhos que liberam veneno ao toque.', type: 'Venenoso' },
+    { id: 'nidorina', name: 'É gentil e se torna agressiva para proteger seus filhotes. Seus espinhos não liberam veneno quando está calma.', type: 'Venenoso' },
+    { id: 'nidoqueen', name: 'Tem um corpo resistente e protetor, excelente para proteger seus filhotes. Usa seu grande corpo para esmagar inimigos.', type: 'Venenoso/Terra' },
+    { id: 'nidoran-m', name: 'Embora pequeno, possui espinhos venenosos capazes de nocautear oponentes maiores.', type: 'Venenoso' },
+    { id: 'nidorino', name: 'Seus espinhos são mais rígidos do que os de Nidoran. Ele ataca ferozmente quando se sente ameaçado.', type: 'Venenoso' },
+    { id: 'nidoking', name: 'Possui uma força devastadora e um temperamento explosivo. Sua cauda pode destruir qualquer coisa em seu caminho.', type: 'Venenoso/Terra' },
+    { id: 'clefairy', name: 'É dito que a felicidade é transmitida ao se ver Clefairy dançar em noites de lua cheia.', type: 'Fada' },
+    { id: 'clefable', name: 'Pode flutuar em lagos tranquilos durante a noite. Suas asas delicadas e sua audição aguçada o tornam bastante evasivo.', type: 'Fada' },
+    { id: 'vulpix', name: 'Tem seis caudas que crescem à medida que envelhece. Quando ameaçado, cospe chamas ardentes.', type: 'Fogo' },
+    { id: 'ninetales', name: 'Diz-se que vive mil anos e usa suas caudas para amaldiçoar aqueles que lhe fazem mal.', type: 'Fogo' },
+    { id: 'jigglypuff', name: 'Hipnotiza os oponentes com sua suave canção de ninar, que os faz dormir profundamente.', type: 'Fada' },
+    { id: 'wigglytuff', name: 'Seu corpo é incrivelmente elástico e macio. Ao inalar, ele pode inflar até muitas vezes seu tamanho.', type: 'Fada' },
+    { id: 'zubat', name: 'Vive em cavernas escuras, onde usa seus gritos ultrassônicos para se orientar.', type: 'Venenoso/Voador' },
+    { id: 'golbat', name: 'Gosta de sugar sangue de suas presas. Suas presas afundam profundamente e podem perfurar até couro mais espesso.', type: 'Venenoso/Voador' },
+    { id: 'oddish', name: 'Suga nutrientes do solo para crescer. É mais ativo à noite, quando se movimenta e planta suas raízes em novos lugares.', type: 'Grama/Venenoso' },
+    { id: 'gloom', name: 'Exala um odor horrível que pode fazer as pessoas desmaiarem. Se sentir que está em perigo, libera uma quantidade ainda maior do cheiro.', type: 'Grama/Venenoso' },
+    { id: 'vileplume', name: 'Seu pólen venenoso causa paralisia e pode ser lançado em grande quantidade ao balançar suas pétalas gigantes.', type: 'Grama/Venenoso' },
+    { id: 'paras', name: 'Carrega esporos de cogumelos parasitas em suas costas que drenam sua energia vital lentamente.', type: 'Inseto/Grama' },
+    { id: 'parasect', name: 'O cogumelo nas costas de Parasect tomou controle completo do corpo. Ele libera esporos venenosos que controlam outros seres vivos.', type: 'Inseto/Grama' },
+    { id: 'venonat', name: 'Tem uma visão incrivelmente aguçada e pode caçar no escuro. Seus pelos liberam toxinas que paralisam seus inimigos.', type: 'Inseto/Venenoso' },
+    { id: 'venomoth', name: 'Suas asas liberam um pó venenoso que pode paralisar ou envenenar os inimigos. Ataca à noite para evitar predadores.', type: 'Inseto/Venenoso' },
+    { id: 'diglett', name: 'Vive embaixo da terra e raramente aparece acima do solo. Sua habilidade de cavar túneis é muito eficiente.', type: 'Terra' },
+    { id: 'dugtrio', name: 'Três Digletts trabalham juntos para cavar rapidamente. Dizem que pode provocar terremotos com sua velocidade.', type: 'Terra' },
+    { id: 'meowth', name: 'Adora colecionar moedas brilhantes. É conhecido por sua astúcia e habilidade de andar silenciosamente.', type: 'Normal' },
+    { id: 'persian', name: 'Com um ar altivo e elegante, Persian é temido por seu ataque feroz. Adora o luxo e é bastante territorial.', type: 'Normal' },
+    { id: 'psyduck', name: 'Fica confuso e desorientado por conta de suas fortes dores de cabeça. Quando a dor se intensifica, libera poderes psíquicos.', type: 'Água' },
+    { id: 'golduck', name: 'É excelente nadador e pode competir com nadadores olímpicos. Sua joia emite energia psíquica quando está concentrado.', type: 'Água' },
+    { id: 'mankey', name: 'Seu temperamento explosivo o faz atacar qualquer coisa à vista quando está irritado.', type: 'Lutador' },
+    { id: 'primeape', name: 'Uma vez que fica com raiva, não para de atacar até que o oponente seja nocauteado. Sua fúria não tem fim.', type: 'Lutador' },
+    { id: 'growlithe', name: 'Tem um senso de lealdade muito forte. Protege seus donos ferozmente e tem um olfato incrivelmente apurado.', type: 'Fogo' },
+    { id: 'arcanine', name: 'Corre a velocidades incríveis, semelhante a um cavalo. Sua majestade e poder são reverenciados por muitos.', type: 'Fogo' },
+    { id: 'poliwag', name: 'Seu corpo é quase totalmente composto por água. Ele pode viver tanto na água quanto na terra, mas se move mais rápido na água.', type: 'Água' },
+    { id: 'poliwhirl', name: 'Sua pele úmida e escorregadia o protege de ataques. Ele gira seu estômago em espiral para hipnotizar seus oponentes.', type: 'Água' },
+    { id: 'poliwrath', name: 'Tem músculos incrivelmente fortes, permitindo que nade por horas sem cansar. Usa seus punhos para atacar com grande força.', type: 'Água/Lutador' },
+    { id: 'abra', name: 'Gasta a maior parte de seu tempo dormindo para manter seus poderes psíquicos em seu máximo. Teleporta-se ao menor sinal de perigo.', type: 'Psíquico' },
+    { id: 'kadabra', name: 'Emite ondas cerebrais que afetam máquinas e causam estranhas sensações nas pessoas próximas.', type: 'Psíquico' },
+    { id: 'alakazam', name: 'Seu cérebro é tão desenvolvido que pode realizar cálculos complexos instantaneamente. Sua memória é infinita.', type: 'Psíquico' },
+    { id: 'machop', name: 'Treina constantemente para aumentar sua força. Pode levantar e carregar qualquer coisa.', type: 'Lutador' },
+    { id: 'machoke', name: 'Sua musculatura é tão avançada que ele precisa de uma cinta especial para conter sua força.', type: 'Lutador' },
+    { id: 'machamp', name: 'Com seus quatro braços, pode realizar vários ataques ao mesmo tempo. Sua força bruta é quase imparável.', type: 'Lutador' },
+    { id: 'bellsprout', name: 'Com seu corpo fino e flexível, pode se inclinar para capturar presas pequenas com sua boca em forma de sino.', type: 'Grama/Venenoso' },
+    { id: 'weepinbell', name: 'Fica pendurado em árvores para descansar. Se algo passar perto, ele o devora sem pensar duas vezes.', type: 'Grama/Venenoso' },
+    { id: 'victreebel', name: 'Vive em selvas densas, atraindo suas presas com um doce aroma. Uma vez que a presa cai em sua boca, ela é digerida lentamente.', type: 'Grama/Venenoso' },
+    { id: 'tentacool', name: 'Flutua na água quase invisível, atacando presas com seus tentáculos venenosos.', type: 'Água/Venenoso' },
+    { id: 'tentacruel', name: 'Com seus tentáculos estendidos, captura e paralisa suas presas. Pode controlar o nível de toxinas liberadas.', type: 'Água/Venenoso' },
+    { id: 'geodude', name: 'Parece uma pedra comum, mas se alguém pisar nele, ele rapidamente fica furioso e ataca.', type: 'Pedra/Terra' },
+    { id: 'graveler', name: 'Desce montanhas rolando. Sua armadura de pedra o protege de quase todos os ataques.', type: 'Pedra/Terra' },
+    { id: 'golem', name: 'Seu corpo de rocha é tão duro quanto diamante. Pode explodir para se defender de ameaças.', type: 'Pedra/Terra' },
+    { id: 'ponyta', name: 'Nasce com patas fracas, mas rapidamente se torna incrivelmente rápido. Suas chamas aumentam quando ele está agitado.', type: 'Fogo' },
+    { id: 'rapidash', name: 'Corre tão rápido quanto o som. Suas crinas flamejantes brilham enquanto corre, deixando um rastro de fogo.', type: 'Fogo' },
+    { id: 'slowpoke', name: 'É extremamente lento e distraído, muitas vezes não percebe o que está acontecendo ao seu redor.', type: 'Água/Psíquico' },
+    { id: 'slowbro', name: 'Um Shellder mordeu sua cauda, causando sua evolução. Agora é ligeiramente mais atento, mas ainda lento.', type: 'Água/Psíquico' },
+    { id: 'magnemite', name: 'Flutua no ar usando forças magnéticas. Pode emitir descargas elétricas para se defender.', type: 'Elétrico/Aço' },
+    { id: 'magneton', name: 'Três Magnemites se unem para criar uma onda magnética mais forte. Afeta aparelhos eletrônicos próximos.', type: 'Elétrico/Aço' },
+    { id: 'farfetchd', name: 'Leva consigo um talo de planta, que usa como arma. Protege seu talo com a vida.', type: 'Normal/Voador' },
+    { id: 'doduo', name: 'Suas duas cabeças pensam de forma independente. Pode correr a grandes velocidades, mesmo em terrenos acidentados.', type: 'Normal/Voador' },
+    { id: 'dodrio', name: 'Com três cabeças, cada uma tem uma personalidade diferente. Corre rapidamente com suas longas pernas.', type: 'Normal/Voador' },
+    { id: 'seel', name: 'Se sente à vontade em águas geladas. Sua pele densa o protege do frio extremo.', type: 'Água' },
+    { id: 'dewgong', name: 'Nada graciosamente em águas árticas. Suas barbatanas são rápidas e ágeis.', type: 'Água/Gelo' },
+    { id: 'grimer', name: 'Feito de lodo tóxico, polui tudo o que toca. É o resultado da exposição de esgotos a energia radioativa.', type: 'Venenoso' },
+    { id: 'muk', name: 'Seu corpo exala uma toxina que envenena a terra ao seu redor. Onde quer que passe, nada cresce novamente.', type: 'Venenoso' },
+    { id: 'shellder', name: 'Se fecha em sua concha dura quando ameaçado. Sua língua é incrivelmente poderosa e pode se prender a qualquer coisa.', type: 'Água' },
+    { id: 'cloyster', name: 'Sua concha é quase indestrutível. Pode lançar espinhos afiadas para atacar.', type: 'Água/Gelo' },
+    { id: 'gastly', name: 'É composto de gás venenoso. Pode passar por paredes e deixar seus oponentes inconscientes.', type: 'Fantasma/Venenoso' },
+    { id: 'haunter', name: 'Flutua no ar e pode passar por paredes. Assombra as pessoas e absorve sua energia vital.', type: 'Fantasma/Venenoso' },
+    { id: 'gengar', name: 'Pode se esconder nas sombras e controlar o medo de suas vítimas. Adora pregar peças assustadoras.', type: 'Fantasma/Venenoso' },
+    { id: 'onix', name: 'Seu corpo de rocha é incrivelmente duro. Ele cava túneis subterrâneos a uma velocidade impressionante.', type: 'Pedra/Terra' },
+    { id: 'drowzee', name: 'Alimenta-se de sonhos. Se você acordar com uma sensação estranha, pode ser porque Drowzee estava perto.', type: 'Psíquico' },
+    { id: 'hypno', name: 'Usa seu pêndulo para hipnotizar seus inimigos. Ele os leva a um sono profundo e pode até roubar seus sonhos.', type: 'Psíquico' },
+    { id: 'krabby', name: 'Seus pequenos braços parecem frágeis, mas podem quebrar até pedras. Vive em praias e leitos de rios.', type: 'Água' },
+    { id: 'kingler', name: 'Seu braço maior tem uma força descomunal. Ele pode esmagar tudo que estiver no seu caminho.', type: 'Água' },
+    { id: 'voltorb', name: 'Parece uma Poké Bola, mas explode se for perturbado.', type: 'Elétrico' },
+    { id: 'electrode', name: 'Carrega tanta energia elétrica que pode explodir com o menor estímulo. É conhecido por sua personalidade volátil.', type: 'Elétrico' },
+    { id: 'exeggcute', name: 'Apesar de parecerem ovos, são sementes que se comunicam telepaticamente entre si.', type: 'Grama/Psíquico' },
+    { id: 'exeggutor', name: 'Seu corpo é composto de várias cabeças, cada uma com uma personalidade única. Adora climas tropicais.', type: 'Grama/Psíquico' },
+    { id: 'cubone', name: 'Usa o crânio de sua mãe como capacete. Chora à noite, lamentando sua perda.', type: 'Terra' },
+    { id: 'marowak', name: 'Depois de superar a dor da perda de sua mãe, se torna um guerreiro implacável, usando ossos como armas.', type: 'Terra' },
+    { id: 'hitmonlee', name: 'É um mestre das artes marciais que usa suas longas pernas para chutar os oponentes.', type: 'Lutador' },
+    { id: 'hitmonchan', name: 'Um boxeador nato, seus socos são rápidos e poderosos.', type: 'Lutador' },
+    { id: 'lickitung', name: 'Sua longa língua pode pegar presas e sentir texturas. Usa sua saliva pegajosa para imobilizar inimigos.', type: 'Normal' },
+    { id: 'koffing', name: 'Flutua enquanto emite gases venenosos. Adora locais poluídos e malcheirosos.', type: 'Venenoso' },
+    { id: 'weezing', name: 'Dois Koffings se uniram, formando um corpo mais forte e tóxico. Espalha poluição por onde passa.', type: 'Venenoso' },
+    { id: 'rhyhorn', name: 'Seu corpo é incrivelmente pesado e resistente. Pode correr em linha reta sem perceber os obstáculos.', type: 'Terra/Pedra' },
+    { id: 'rhydon', name: 'Suas pernas poderosas podem esmagar qualquer coisa. Sua pele grossa o protege de qualquer dano.', type: 'Terra/Pedra' },
+    { id: 'chansey', name: 'Carrega um ovo nutritivo que oferece a quem estiver por perto. Seu coração gentil a torna um ótimo cuidador.', type: 'Normal' },
+    { id: 'tangela', name: 'Seu corpo é coberto por vinhas que ele pode usar para capturar inimigos. As vinhas se regeneram rapidamente.', type: 'Grama' },
+    { id: 'kangaskhan', name: 'Cuida de seus filhotes com grande dedicação. Lutará ferozmente para protegê-los de qualquer perigo.', type: 'Normal' },
+    { id: 'horsea', name: 'Seus olhos afiados podem detectar inimigos à distância. Cospe água para se defender ou se mover rapidamente.', type: 'Água' },
+    { id: 'seadra', name: 'Suas barbatanas afiadíssimas e jatos de tinta o tornam um adversário difícil de prever.', type: 'Água' },
+    { id: 'goldeen', name: 'Com sua beleza graciosamente, nada pelos rios. Sua cauda poderosa pode lançar ataques rápidos.', type: 'Água' },
+    { id: 'seaking', name: 'Durante a época de reprodução, Seaking cava buracos no fundo dos rios para proteger seus ovos.', type: 'Água' },
+    { id: 'staryu', name: 'É capaz de se regenerar quando perde uma de suas pontas. Sua joia brilha intensamente durante a noite.', type: 'Água' },
+    { id: 'starmie', name: 'Com sua forma estelar e seu núcleo cintilante, é dito que pode se comunicar com as estrelas.', type: 'Água/Psíquico' },
+    { id: 'mr-mime', name: 'Pode criar barreiras invisíveis com suas mãos. Suas habilidades mímicas o tornam um ilusionista talentoso.', type: 'Psíquico/Fada' },
+    { id: 'scyther', name: 'Com suas lâminas afiadas, ataca a velocidades surpreendentes. Suas asas o tornam um caçador ágil.', type: 'Inseto/Voador' },
+    { id: 'jynx', name: 'Sua dança estranha faz com que as pessoas imitem seus movimentos. Pode controlar mentes com sua voz.', type: 'Gelo/Psíquico' },
+    { id: 'electabuzz', name: 'Gera eletricidade com seu corpo. Durante tempestades, sua energia aumenta drasticamente.', type: 'Elétrico' },
+    { id: 'magmar', name: 'Emite um calor extremo por seu corpo. Seus ataques de fogo são devastadores.', type: 'Fogo' },
+    { id: 'pinsir', name: 'Seus chifres podem esmagar qualquer coisa. Adora climas quentes e passa seus dias caçando.', type: 'Inseto' },
+    { id: 'tauros', name: 'Corre pelos campos em busca de uma luta. Sua personalidade agressiva o torna um oponente perigoso.', type: 'Normal' },
+    { id: 'magikarp', name: 'Embora fraco e inofensivo, pode um dia evoluir para uma criatura incrivelmente poderosa.', type: 'Água' },
+    { id: 'gyarados', name: 'Depois de evoluir, libera sua raiva destrutiva e devasta tudo ao seu redor.', type: 'Água/Voador' },
+    { id: 'lapras', name: 'Um Pokémon gentil que adora transportar pessoas pelas águas. Infelizmente, está em risco de extinção.', type: 'Água/Gelo' },
+    { id: 'ditto', name: 'Pode transformar seu corpo para imitar qualquer coisa que veja. No entanto, sempre mantém seu rosto característico.', type: 'Normal' },
+    { id: 'eevee', name: 'Um Pokémon com a habilidade única de evoluir para várias formas diferentes, dependendo das condições ao seu redor.', type: 'Normal' },
+    { id: 'vaporeon', name: 'Evoluiu para viver na água. Pode se disfarçar como água para se esconder de inimigos.', type: 'Água' },
+    { id: 'jolteon', name: 'Gera eletricidade estática ao se mover. Seu corpo pode disparar raios a partir de suas agulhas.', type: 'Elétrico' },
+    { id: 'flareon', name: 'Armazena calor dentro de seu corpo. Pode exalar fogo intenso ao desejar.', type: 'Fogo' },
+    { id: 'porygon', name: 'Um Pokémon criado por humanos. Pode entrar em sistemas de computadores e viajar pelo ciberespaço.', type: 'Normal' },
+    { id: 'omanyte', name: 'Um Pokémon pré-histórico revivido de um fóssil. Usava seus tentáculos para se mover pela água.', type: 'Pedra/Água' },
+    { id: 'omastar', name: 'Sua concha cresceu muito, dificultando seus movimentos. Usava seus tentáculos para capturar presas.', type: 'Pedra/Água' },
+    { id: 'kabuto', name: 'Um Pokémon antigo que foi revivido a partir de um fóssil. Fica submerso na água para se esconder de predadores.', type: 'Pedra/Água' },
+    { id: 'kabutops', name: 'Era um predador ágil e feroz. Seus braços em forma de lâmina eram usados para capturar presas.', type: 'Pedra/Água' },
+    { id: 'aerodactyl', name: 'Um temido predador do passado. Seu rugido era capaz de assustar qualquer coisa em seu caminho.', type: 'Pedra/Voador' },
+    { id: 'snorlax', name: 'Passa a maior parte do tempo dormindo. Só acorda para comer grandes quantidades de comida.', type: 'Normal' },
+    { id: 'articuno', name: 'O bater de suas asas gélidas pode criar nevascas. Dizem que aparece para aqueles que estão perdidos em montanhas geladas.', type: 'Gelo/Voador' },
+    { id: 'zapdos', name: 'Gera tempestades enquanto voa. Sua presença é marcada por trovões e relâmpagos.', type: 'Elétrico/Voador' },
+    { id: 'moltres', name: 'Seu corpo em chamas ilumina o céu. Diz-se que suas penas de fogo têm poderes curativos.', type: 'Fogo/Voador' },
+    { id: 'dratini', name: 'Vive escondido nas profundezas dos rios. Seu corpo longo está constantemente crescendo.', type: 'Dragão' },
+    { id: 'dragonair', name: 'Emite uma aura misteriosa. Dizem que controla o clima ao seu redor.', type: 'Dragão' },
+    { id: 'dragonite', name: 'Apesar de seu grande tamanho, é incrivelmente ágil e rápido. É conhecido por ajudar aqueles em perigo no mar.', type: 'Dragão/Voador' },
+    { id: 'mewtwo', name: 'Criado por manipulação genética, Mewtwo possui uma força psíquica avassaladora.', type: 'Psíquico' },
+    { id: 'mew', name: 'Um Pokémon misterioso que diz-se conter o DNA de todos os outros Pokémon. É capaz de aprender qualquer ataque.', type: 'Psíquico' }
+];
+
+// Função para exibir os detalhes do Pokémon na barra lateral
+function typePokemons(pokemon) {
+    sidebar.classList.add('active');
+    pokemonImage.src = pokemon.img; // Exibe a imagem do Pokémon
+    pokemonDescription.textContent = pokemon.name; // Exibe a descrição (nome) do Pokémon
+    pokemonType.textContent = `Tipo: ${pokemon.type}`; // Exibe o tipo do Pokémon
+}
+
+// Função para ocultar a barra lateral
+function hideSidebar() {
+    sidebar.classList.remove('active');
+}
+
+// Adiciona os eventos de mouseover e mouseout a todos os Pokémons da lista
+pokemons.forEach(pokemon => {
+    const element = document.getElementById(pokemon.id);
+
+    // Adiciona evento de mouseover
+    element.addEventListener('mouseover', function() {
+        typePokemons(pokemon); // Exibe os detalhes do Pokémon
+    });
+
+    // Adiciona evento de mouseout
+    element.addEventListener('mouseout', hideSidebar); // Oculta a barra lateral
+});
