@@ -1,0 +1,70 @@
+@import url('https://fonts.cdnfonts.com/css/pokemon-Hollow');
+/* Centraliza a lista no meio da página */
+.pokemon-list {
+    list-style-type: decimal; /* Adiciona números aos itens da lista */
+    margin: 0 auto; /* Centraliza a lista horizontalmente */
+    padding: 0;
+    width: 200px; /* Define a largura da lista */
+    text-align: center; /* Centraliza o texto dos itens */
+}
+
+/* Remove qualquer padding/margin nos itens da lista e ajusta o estilo */
+.pokemon-list li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+/* Estilo da barra lateral */
+.sidebar {
+    width: 450px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -450px; /* Inicialmente fora da tela, à direita */
+    background-color: #f4f4f4;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.3); /* Sombra na esquerda */
+    transition: right 0.3s ease; /* Animação suave ao aparecer */
+    display: none; /* Barra oculta por padrão */
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.description {
+    padding: 10px;
+    font-size: 18px;
+    text-align: justify;
+    background-color: #fff; /* Adiciona fundo branco para destacar o texto */
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2; /* Garante que o texto fique sobre a imagem */
+    position: relative; /* Permite controlar o empilhamento */
+}
+
+/* Estilo para a imagem e descrição */
+.sidebar img {
+    width: 100%; /* A imagem ocupa toda a largura */
+    height: 55%; /* Ajusta a altura conforme a largura */
+    object-fit: cover; /* Mantém a proporção da imagem */
+    z-index: 1; /* Fica atrás do texto */
+    flex-grow: 1; /* A imagem preenche o restante do espaço */
+}
+
+
+/* Exibe a barra lateral quando a classe 'active' é adicionada */
+.sidebar.active {
+    display: block; /* Exibe a barra quando ativa */
+    right: 0; /* Move a barra para a direita */
+}
+
+/* Centraliza o título da página */
+h1 {
+    text-align: center;
+}
+
+.type {
+    margin: 5px 0;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff0000;
+}

@@ -1,0 +1,37 @@
+@import url('https://fonts.cdnfonts.com/css/pokemon-Hollow');
+#background{
+    background-color:#006de9;
+    padding: 0px;
+    box-sizing: border-box; /* Inclui padding e bordas no cálculo da largura e altura */
+}
+
+#h1{
+    
+    background-color:#98BEE5;
+    color: #FDF8FF;
+    padding: 10px;
+    text-align: center;
+    width: 100%; /* Garante que o h1 ocupe toda a largura */
+    
+}
+
+#listpokemon{
+     background-color: #2efc006c; /* Cor de fundo para exemplo */
+     padding: 10px;
+     border-radius: 30px;
+     margin-bottom: 5px;
+     margin-top: 10px;
+     list-style-position: inside; /* Faz o número aparecer dentro do fundo */
+
+}
+/* Cores intercaladas para as linhas da lista */
+#listpokemon li:nth-child(odd) {
+   /* background-color:#D1FC8B; */ /* Verde claro */
+   background-color: #D92D21;
+}
+
+#listpokemon li:nth-child(even) {
+    /* background-color:#005148;*/ /* Verde escuro */
+    background-color: white;
+    
+}

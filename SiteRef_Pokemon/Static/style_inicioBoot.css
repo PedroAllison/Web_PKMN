@@ -1,0 +1,36 @@
+@import url('https://fonts.cdnfonts.com/css/pokemon-Hollow');
+html, body {
+    background-color: rgb(151, 151, 151);
+    height: 100%;
+    margin: 0; /* Remove default margin */
+}
+
+.outer-container {
+    background-color: aliceblue;
+    padding: 30px;
+    width: 100%; /* Make it responsive */
+    text-align: center; /* Center text horizontally */
+    position: relative; /* Allow absolute positioning of child elements */
+}
+
+.content {
+    position: absolute; /* Position the content absolutely */
+    top: 0; /* Align to the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust horizontal centering */
+}
+
+
+#h1{
+    text-align: center;
+    font-family: 'Pokemon Hollow';
+}
+
+#imgD{
+        display: block;   /* Faz a imagem se comportar como um bloco */
+        margin: 0 auto;   /* Centraliza horizontalmente */
+        max-width: 100%;  /* Garante que a imagem não exceda a largura do contêiner */
+        height: auto;     /* Mantém a proporção da imagem */
+    }
+
+
